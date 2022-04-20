@@ -1,0 +1,16 @@
+body {
+    font-family: 'Oswald', sans-serif;
+    font-size: large;
+    background: rgb(232, 232, 232);
+    background: linear-gradient(-90deg, rgba(232,232,232,1) 0%, rgb(49, 49, 49) 100%);
+}
+
+.gray {
+    background-color:rgb(58, 58, 58);
+    color: white;
+}
+
+
+#nft-name {
+    color: rgb(208, 208, 208);
+}
