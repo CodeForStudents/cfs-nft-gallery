@@ -106,7 +106,7 @@
       "ownerAddress": "0x010146A6b165C4323fAfBE0F24cB5b6d5E9cF626"
     },
     "storage": {
-      "metaUri": "ipfs://QmYV9KtXtTP1fCsQZ6b3f6A5NdBCK59Xf5vNJM18zGEdyd",
+      "metaUri": "/QmYV9KtXtTP1fCsQZ6b3f6A5ipfs:/NdBCK59Xf5vNJM18zGEdyd",
       "nftUri": "ipfs://QmZ2iHNFo63GnBjy1akVXi8K7tpPPmu1FHMzXuri1Kr85P",
       "storageType": "infura-ipfs",
       "storageUri": "ipfs.infura.io"
