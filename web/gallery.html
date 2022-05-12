@@ -19,7 +19,7 @@
 
     <title>NFT Gallery</title>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <!-- Navbar -->
       <header>
         <nav class="navbar navbar-expand-lg shadow p-3 mb-5 navbar-dark bg-dark">
@@ -58,6 +58,14 @@
           </div>
         </div>
       </main>
+
+       <!-- Footer -->
+       <footer class="mt-auto">
+        <div class="container-fluid py-sm-5 py-1 bg-dark text-center">
+          <p id="nils">&copy;Nils</p>
+        </div>
+      </footer>
+
 <script>
   
   function fetchData() {
@@ -73,21 +81,24 @@
         col.className = 'col';
         let card = document.createElement('div');
         card.className = 'card h-100';
+        let link = document.createElement('a');
+        link.href = 'details.html?nftid='+element.metadata.id;
         let img = document.createElement('img');
         img.src = element.metadata.image;
         img.className = 'card-img-top';
         let cardBody = document.createElement('div');
         cardBody.className = 'card-body';
         let title = document.createElement('h5');
-        title.innerText = element.metadata.name;
+        title.innerText = element.metadata.name + ' #' + element.metadata.id;
         title.className = 'card-title';
         let text = document.createElement('p');
-        text.innerText = element.contract.contractAddress;
+        text.innerText = element.metadata.description;
         text.className = 'card-text';
 
         cardBody.appendChild(title);
         cardBody.appendChild(text);
-        card.appendChild(img);
+        link.appendChild(img)
+        card.appendChild(link);
         card.appendChild(cardBody);
         col.appendChild(card);
         row.appendChild(col);
