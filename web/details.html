@@ -54,17 +54,18 @@
       <!-- Website Info -->
       <main>
         <div class="container">
-          <div class="row align-items-center justify-content-evenly">
-            <div class=" col-sm-3 order-sm-5">
-              <a href="index.html">  
-                <img 
-                  src="assets/nft/01/01.png" 
-                  class="img-fluid"
-                  alt="NFT" 
-                  id="nft-main"
-                >
-              </a>
+          <div class="clearfix">
+            <div class="row align-items-center justify-content-evenly">
+            
             </div>
+            <dl class="row" id='NFT_Details'>
+              <dt class=" col-sm-12 mb-5">
+                <div id="image">
+                
+                
+                </div>
+              </dt>
+            </dl>
           </div>
         </div>
       </main>
@@ -81,19 +82,79 @@
 
 <!-- Load Bootstrap Bundle with Popper -->
 <script>
-    function fetchData() {
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const param1 = urlParams.get('nftid');
+
+  function fetchData() {
     return fetch("nft-data.json")
       .then(response => {
         return response.json();
       }).then(res => {
         console.log(res);
         res.forEach(element => {
+          if (param1 == element.metadata.id) {
+            console.log(element.metadata.id);
+            //Image
+            const col = document.getElementById('image');
+            let link = document.createElement('a');
+            link.href = 'gallery.html';
+            let img = document.createElement('img');
+            img.src = element.metadata.image;
+            img.className = 'img-fluid';
+            img.alt = element.metadata.description;
+            link.appendChild(img);
+            col.appendChild(link);
+
+            //Text
+            const row = document.getElementById('NFT_Details');
+            let dtname = document.createElement('dt');
+            dtname.className = 'col-sm-3 mb-5';
+            dtname.innerText = 'Name'
+            let DDname = document.createElement('dd');
+            DDname.className = "col-sm-9 textDetails";
+            DDname.innerText = element.metadata.name;
+            let dtdescription = document.createElement('dt');
+            dtdescription.className = "col-sm-3";
+            dtdescription.innerText = 'Description';
+            let dddescrpition = document.createElement('dd');
+            dddescrpition.className = "col-sm-9 textDetails";
+            dddescrpition.innerText = element.metadata.description;
+            let dtID = document.createElement('dt');
+            dtID.className = 'col-sm-3';
+            dtID.innerText = 'ID';
+            let ddID = document.createElement('dd');
+            ddID.className = "col-sm-9 textDetails";
+            ddID.innerText = '#' + element.metadata.id;
+            let dtDate = document.createElement('dt');
+            dtDate.className = 'col-sm-3';
+            dtDate.innerText = 'Transaction Date'
+            let date = new Date(element.transaction.transactionDate);
+            date.toLocaleTimeString();
+            let ddDate = document.createElement('dd');
+            ddDate.className = "col-sm-9 textDetails";
+            ddDate.innerText = date;
+            
+            row.appendChild(dtname);
+            row.appendChild(DDname);
+            row.appendChild(dtdescription);
+            row.appendChild(dddescrpition);
+            row.appendChild(dtID);
+            row.appendChild(ddID);
+            row.appendChild(dtDate);
+            row.appendChild(ddDate);
+            
           
+          }
+
+          else {
+            return null;
+          }
         });
         })
     }
   
-  
+  fetchData();
   
 </script>
 </body>

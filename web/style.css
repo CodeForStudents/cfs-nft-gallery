@@ -10,7 +10,14 @@ body {
     color: white;
 }
 
-#nft-main {
+.textDetails {
+    color: rgb(219, 219, 219);
+}
+
+dt {
+    color: rgb(255, 245, 233);
+}
+.nft {
     display: block;
     max-width: 100%;
     height: auto;
