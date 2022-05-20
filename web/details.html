@@ -71,7 +71,7 @@
       </main>
        <!-- Footer -->
        <footer class="mt-auto">
-        <div class="container-fluid py-sm-5 py-1 bg-dark text-center">
+        <div class="container-fluid py-sm-5 py-1 bg-dark text-center mt-4">
           <p id="nils">&copy;Nils</p>
         </div>
       </footer>
@@ -109,10 +109,10 @@
             //Text
             const row = document.getElementById('NFT_Details');
             let dtname = document.createElement('dt');
-            dtname.className = 'col-sm-3 mb-5';
+            dtname.className = 'col-sm-3 ';
             dtname.innerText = 'Name'
             let DDname = document.createElement('dd');
-            DDname.className = "col-sm-9 textDetails";
+            DDname.className = "col-sm-9 mb-5 textDetails";
             DDname.innerText = element.metadata.name;
             let dtdescription = document.createElement('dt');
             dtdescription.className = "col-sm-3";
@@ -134,6 +134,16 @@
             let ddDate = document.createElement('dd');
             ddDate.className = "col-sm-9 textDetails";
             ddDate.innerText = date;
+            let dttransHash = document.createElement('dt');
+            dttransHash.className = 'col-sm-3';
+            dttransHash.innerText = 'Transaction Hash';
+            let ddtransHash = document.createElement('dd');
+            ddtransHash.className = 'col-sm-9';
+            let transHash = document.createElement('a');
+            transHash.href = 'https://rinkeby.etherscan.io/tx/' + element.transaction.transactionHash;
+            transHash.className = 'link-dark text-truncate test';
+            transHash.innerText = element.transaction.transactionHash;
+            ddtransHash.appendChild(transHash);
             
             row.appendChild(dtname);
             row.appendChild(DDname);
@@ -143,6 +153,8 @@
             row.appendChild(ddID);
             row.appendChild(dtDate);
             row.appendChild(ddDate);
+            row.appendChild(dttransHash);
+            row.appendChild(ddtransHash);
             
           
           }

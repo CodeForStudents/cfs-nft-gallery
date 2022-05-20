@@ -55,7 +55,7 @@
       <!-- Website Info -->
       <main>
         <div class="container">
-          <div class="row align-items-center justify-content-evenly">
+          <div class="row align-items-center justify-content-evenly" id="rowMain">
             <div class="col-12 col-sm-3 order-sm-5">
               <div class="text-center">
                 <p class="display-2"><strong>Explore,</strong></p>
@@ -64,19 +64,21 @@
                 <a href="gallery.html" class="my-4 btn btn-lg btn-success" role="button">Show collection</a>
               </div>
             </div>
-            <div class=" col-7 col-sm-3 order-sm-1 mb-5">
-              <a href="details.html">  
-                <img 
-                  src="assets/nft/01/01.png" 
-                  class="img-fluid"
-                  alt="NFT" 
-                  id="nft-main"
-                >
-              </a>
-            </div>
+           
           </div>
         </div>
       </main>
+      <div class="galleryIndex">
+        <div class="container mt-5 py-5">
+          <div class="border border-3 rounded-pill overflow-auto text-center bg-dark">
+            <h1 class="display-4 px-3 text-white">About</h1>
+            <p class="h4 my-4 px-3 text-white">Lorem ipsum, dolor sit amet consectetur adipisicing elit. At doloribus beatae assumenda accusamus deleniti iste dignissimos ab aperiam ratione? Adipisci non sunt libero blanditiis nesciunt molestiae aliquid nihil, numquam, velit laboriosam veritatis ipsa! Similique nulla ea earum cupiditate culpa ducimus?</p>
+          </div>
+          <div class="row row-cols-1 row-cols-md-3 g-4 mt-5" id="nft_row">
+            <!--NFT Cards-->
+          </div>
+        </div>
+      </div>
 
       <!-- Footer -->
       <footer class="mt-auto">
@@ -91,10 +93,67 @@
 
 
 <!-- Load Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous" type="text/javascript">
-      
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+<script>
+  
+  function fetchData() {
+  return fetch("nft-data.json")
+    .then(response => {
+      return response.json();
+    }).then(res => {
+      console.log(res);
+      res.forEach(element => {
+
+        const row = document.getElementById('nft_row');
+        let col = document.createElement('div');
+        col.className = 'col';
+        let card = document.createElement('div');
+        card.className = 'card h-100';
+        let link = document.createElement('a');
+        link.href = 'details.html?nftid='+element.metadata.id;
+        let img = document.createElement('img');
+        img.src = element.metadata.image;
+        img.className = 'card-img-top';
+        let cardBody = document.createElement('div');
+        cardBody.className = 'card-body';
+        let title = document.createElement('h5');
+        title.innerText = element.metadata.name + ' #' + element.metadata.id;
+        title.className = 'card-title';
+        let text = document.createElement('p');
+        text.innerText = element.metadata.description;
+        text.className = 'card-text';
+
+        cardBody.appendChild(title);
+        cardBody.appendChild(text);
+        link.appendChild(img)
+        card.appendChild(link);
+        card.appendChild(cardBody);
+        col.appendChild(card);
+        row.appendChild(col);
+
+        if (element.metadata.id == 1) {
+          const mainRow = document.getElementById('rowMain');
+          let div = document.createElement('div');
+          div.className = " col-7 col-sm-3 order-sm-1 mb-5";
+          let a = document.createElement('a');
+          a.href = 'details.html?nftid='+element.metadata.id;
+          let nftImg = document.createElement('img');
+          nftImg.src = element.metadata.image;
+          nftImg.className = 'img-fluid';
+          nftImg.alt = 'NFT';
+
+          a.appendChild(nftImg);
+          div.appendChild(a);
+          mainRow.appendChild(div);
+        }
+      });
+      })
+  }
+  
+  
+
+fetchData();
 </script>
 </body>
 </html>
