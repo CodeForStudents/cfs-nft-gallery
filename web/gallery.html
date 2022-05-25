@@ -11,6 +11,8 @@
     
     <!-- Style CSS -->
     <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
@@ -44,9 +46,7 @@
               
             </ul>
             <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+           
           </div>
         </div>
       </nav>
@@ -80,6 +80,7 @@
         const row = document.getElementById('nft_row');
         let col = document.createElement('div');
         col.className = 'col';
+        col.setAttribute('data-aos', 'zoom-in');
         let card = document.createElement('div');
         card.className = 'card h-100';
         let link = document.createElement('a');
@@ -108,7 +109,7 @@
   }
   
   
-
+AOS.init();
 fetchData();
 </script>
 </body>
