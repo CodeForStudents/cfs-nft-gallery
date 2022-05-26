@@ -10,13 +10,11 @@ body {
     color: white;
 }
 
-.textDetails {
-    color: rgb(219, 219, 219);
-}
+
 
 dt {
-    color: rgb(255, 245, 233);
-}
+    color: rgb(255, 255, 255);
+}   
 .nft {
     display: block;
     max-width: 100%;
